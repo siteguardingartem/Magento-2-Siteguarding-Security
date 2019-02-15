@@ -1,0 +1,37 @@
+<?php if ($this->check_sg_tools() !== true) { ?>
+    <p align="center" style="color:red;"><b>The file does not exist or corrupted. Please reinstall plugin from <a
+                target="_blank" href="https://www.siteguarding.com">https://www.siteguarding.com</a></b></p>
+<?php } elseif ($this->check_sg_conf() !== true) { ?>
+    <p style="text-align: center;">
+        <img style="width: 500px;margin: 20px 0;"
+             src="<?php echo $this->getViewFileUrl('Siteguarding_Security::images/logo_siteguarding.svg'); ?>"/>
+    </p>
+    <p style="text-align: center; font-size: 19px;">One more step to protect your website.</p>
+    <p style="text-align: center; font-size: 15px;">
+        Please go to <a href="https://www.siteguarding.com/en/login">SiteGuarding.com</a> login to the account and add
+        your website.
+    </p>
+    <p style="text-align: center; font-size: 15px;">
+        If you are already registered just reload this page.
+    </p>
+    <p style="text-align: center;">
+        <button class="action-primary"><a style="color:#ffff" target="_blank" href="https://www.siteguarding.com/en/login">CLICK TO LOGIN</a>
+        </button>
+    </p>
+<?php } else {
+    $this->get_autologin_id();
+    ?>
+    <form action="https://www.siteguarding.com/index.php" method="post">
+        <p style="text-align: center;">
+            <img style="width: 500px;margin: 20px 0;" src="<?php echo $this->getViewFileUrl('Siteguarding_Security::images/logo_siteguarding.svg'); ?>" />
+        </p>
+        <p style="text-align: center; font-size: 19px;">Use SiteGuarding dashboard to manage security services of your website</p>
+        <p style="text-align: center">
+            <button class="action-primary" type="submit" value="Security Dashboard" >Security Dashboard</button>
+        </p>
+        <input type="hidden" name="option" value="com_securapp" />
+        <input type="hidden" name="autologin_key" value="<?php echo WEBSITE_SECURITY_AUTOLOGIN; ?>" />
+        <input type="hidden" name="website_url" value="<?php echo $this->get_base_url(); ?>" />
+        <input type="hidden" name="task" value="Panel_autologin" />
+    </form>
+<?php } ?>
