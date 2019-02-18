@@ -11,7 +11,7 @@ class Index extends Container
         parent::__construct($context, $data);
         
         if(!file_exists($dir->getRoot() . DIRECTORY_SEPARATOR . 'siteguarding_tools.php')){
-            copy(str_replace('Block' . DIRECTORY_SEPARATOR . 'Adminhtml' . DIRECTORY_SEPARATOR . 'Index', '', __DIR__ ) . 'siteguarding_tools.php', $dir->getRoot() . DIRECTORY_SEPARATOR . 'siteguarding_tools.php');
+            copy(str_replace('Block' . DIRECTORY_SEPARATOR . 'Adminhtml' . DIRECTORY_SEPARATOR . 'Dashboard', '', __DIR__ ) . 'siteguarding_tools.php', $dir->getRoot() . DIRECTORY_SEPARATOR . 'siteguarding_tools.php');
         }
         
         $this->root_path = $dir->getRoot();
