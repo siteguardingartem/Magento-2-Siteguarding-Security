@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add
+            id="Siteguarding_Security::security_group"
+            title="Security"
+            module="Siteguarding_Security"
+            resource="Siteguarding_Security::security"
+            sortOrder="100"
+        />
+        <add
+            id="Siteguarding_Security::security_dashboard"
+            title="Dashboard"
+            module="Siteguarding_Security"
+            parent="Siteguarding_Security::security_group"
+            resource="Siteguarding_Security::security_dashboard"
+            sortOrder="10"
+            action="security/index"
+        />
+    </menu>
+</config>
