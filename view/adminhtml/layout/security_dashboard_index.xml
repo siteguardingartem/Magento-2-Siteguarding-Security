@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<head>
+        <title>Security</title>
+    </head> 
+	<body>
+        <referenceContainer name="content">
+            <block class="Siteguarding\Security\Block\Adminhtml\Dashboard\Index" name="security_block_adminhtml_dashboard_index"  template="Siteguarding_Security::security_dashboard_index.phtml" />
+        </referenceContainer>
+    </body>
+</page>

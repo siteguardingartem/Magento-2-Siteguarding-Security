@@ -17,7 +17,7 @@
             parent="Siteguarding_Security::security_group"
             resource="Siteguarding_Security::security_dashboard"
             sortOrder="10"
-            action="security/index"
+            action="security/dashboard"
         />
     </menu>
 </config>

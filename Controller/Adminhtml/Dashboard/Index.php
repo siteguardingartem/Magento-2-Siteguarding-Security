@@ -8,6 +8,8 @@ class Index extends Action
 {
     public function execute()
     {
-        die("Controller backend");
+        $this->_view->loadLayout();
+        $this->_view->getLayout()->initMessages();
+        $this->_view->renderLayout();
     }
 }
