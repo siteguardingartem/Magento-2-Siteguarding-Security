@@ -44,8 +44,8 @@ define('WEBSITE_ROOT', dirname(__FILE__).DIRSEP);
  * Start
  */
 $task_id = '';
-if (isset($_REQUEST['task_id'])) $task_id = trim($_REQUEST['task_id']);
-if ($task_id == '') die('siteguarding_tools.php is ok');
+if (filter_input(INPUT_POST,'task_id')) $task_id = trim(filter_input(INPUT_POST,'task_id'));
+if ($task_id == '') { print_r('siteguarding_tools.php is ok'); return; } 
 
 // Check if request came from allowed IP address
 $is_allowed_session = false;
@@ -62,11 +62,11 @@ if ($is_allowed_session === false)
 {
     // Check session with PGP way
     $task_pgp = '';
-    if (isset($_REQUEST['task_pgp'])) $task_pgp = trim($_REQUEST['task_pgp']);
-    if ($task_pgp == '') die('task_pgp error');
+    if (filter_input(INPUT_POST,'task_pgp')) $task_pgp = trim(filter_input(INPUT_POST,'task_pgp'));
+    if ($task_pgp == '') { print_r('task_pgp error'); return; }
     
     $task_pgp = trim(PGP_decrypt($task_pgp));
-    if ($task_pgp != $task_id) die('task_pgp wrong value');
+    if ($task_pgp != $task_id) { print_r('task_pgp wrong value'); return; }
 }
 
 
@@ -79,17 +79,17 @@ if ($task_id == 'ping')
     {
         $a['login'] = Read_File($login);
     }
-    
-    die(json_encode($a));
+    print_r(json_encode($a));
+    return;
 }
 
 
 // Connect to SiteGuarding.com server
 $link = SITEGUARDING_SERVER.'?action=siteguarding_tools&task_id='.$task_id;
 $task_json = trim(GetRemote_file_contents($link));
-if ($task_json == '') die('Empty task_json');
+if ($task_json == '') { print_r('Empty task_json'); return; }
 $task_json = (array)json_decode($task_json, true);
-if ( is_array($task_json) === false || $task_json === false) die('False decode task_json');
+if ( is_array($task_json) === false || $task_json === false) { print_r('False decode task_json'); return; }
 
 foreach ($task_json as $task_code => $task_data)
 {
@@ -109,7 +109,7 @@ foreach ($task_json as $task_code => $task_data)
     }
 }
 
-exit;
+return;
 
 
 
@@ -165,7 +165,7 @@ function Task_showfile($task_data)
     
     if (count($a))
     {
-        echo json_encode($a);
+        print_r(json_encode($a));
     }
 }
 
@@ -302,5 +302,3 @@ function CreateRemote_file_contents_ext($url, $dst)
     }
     else return false;
 }
-
-?>
